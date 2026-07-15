@@ -1,7 +1,11 @@
+import RegisterForm from "@/components/forms/registerform";
+
 export default function Register() {
   return (
-    <div>
-      <h1>Cadastre-se!</h1>
+    <div className="bg-app-background min-h-screen flex items-center justify-center px-4 py-8">
+      <div className="w-full ">
+        <RegisterForm />
+      </div>
     </div>
   );
 }
