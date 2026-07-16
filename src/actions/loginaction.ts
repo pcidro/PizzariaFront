@@ -1,32 +1,33 @@
 "use server";
-import type { RegisterState } from "@/components/forms/registerform";
-
 import { apiClient } from "@/lib/api";
-import { User } from "@/types/userType";
+import type { LoginState } from "@/components/forms/loginform";
+import { AuthResponse } from "@/types/authResponse";
+import { setToken } from "@/lib/cookies";
 
-export async function registerAction(
-  prevState: RegisterState,
-  formData: FormData,
-) {
+export async function loginAction(prevState: LoginState, formData: FormData) {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
-  const name = formData.get("name") as string;
+  console.log(email, password);
 
   try {
-    if (!name || !password) {
+    if (!email || !password) {
       throw new Error("Preencha os dados");
     }
 
-    await apiClient<User>("/users", {
+    const response = await apiClient<AuthResponse>("/session", {
       method: "POST",
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-      }),
+      body: JSON.stringify({ email, password }),
     });
 
-    return { success: true, error: "", redirectTo: "/login" };
+    console.log(response);
+
+    await setToken(response.token);
+
+    return {
+      success: true,
+      error: "",
+      redirectTo: "/dashboard",
+    };
   } catch (error) {
     if (error instanceof Error) {
       if (error.message === "Preencha os dados") {
@@ -39,7 +40,7 @@ export async function registerAction(
 
       return {
         success: false,
-        error: error.message,
+        error: "Login ou senha incorretos",
         redirectTo: null,
       };
     }
