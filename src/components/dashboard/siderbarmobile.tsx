@@ -40,11 +40,13 @@ export default function SidebarMobile() {
       <header className="sticky top-0 z-50 border-b border-app-border bg-app-card">
         <div className="flex h-16 items-center justify-between px-4">
           <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger>
-              <Button size={"icon"}>
-                <Menu className="w-5 h-5" />
-              </Button>
-            </SheetTrigger>
+            <SheetTrigger
+              render={
+                <Button size={"icon"}>
+                  <Menu className="w-5 h-5" />
+                </Button>
+              }
+            ></SheetTrigger>
             <SheetContent
               className="w-72 bg-app-sidebar border-app-border text-white"
               side="left"
