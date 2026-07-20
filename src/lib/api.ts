@@ -1,5 +1,3 @@
-import { error } from "console";
-
 const API_URL = process.env.NEXT_PUBLIC_URL as string;
 
 export function getApiUrl() {
@@ -40,7 +38,7 @@ export async function apiClient<T>(
 
   if (!response.ok) {
     throw new Error(
-      `Erro na requisição: ${response.statusText} ${response.status} ${error}`,
+      `Erro na requisição: ${response.statusText} ${response.status}`,
     );
   }
   return response.json() as Promise<T>;
