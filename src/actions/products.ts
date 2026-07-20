@@ -30,7 +30,12 @@ export async function ProductsAction(formData: FormData) {
     }
 
     // Converter preço para centavos
-    const cleanPrice = price.replace(",", ".");
+    const cleanPrice = price
+      .replace("R$", "")
+      .replace(/\s/g, "")
+      .replace(/\./g, "")
+      .replace(",", ".")
+      .trim();
     const numericPrice = parseFloat(cleanPrice);
     if (isNaN(numericPrice) || numericPrice <= 0) {
       throw new Error("Preço inválido. Insira um valor numérico positivo");
