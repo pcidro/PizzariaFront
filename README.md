@@ -15,6 +15,11 @@ Este projeto foi desenvolvido para fornecer uma interface administrativa robusta
 - [Boas Práticas e Arquitetura](#️-boas-práticas-e-arquitetura)
 - [Possíveis Evoluções e Melhorias Futuras](#-possíveis-evoluções-e-melhorias-futuras)
 
+##  DEPLOY
+
+👉 **[https://pizzaria-front-ecru.vercel.app](https://pizzaria-front-ecru.vercel.app)**
+
+
 ## 🎯 Descrição Geral e Objetivo
 
 O objetivo deste projeto é modernizar e facilitar a operação de uma pizzaria, focando principalmente no lado administrativo e na cozinha. Através de um painel de controle intuitivo, os administradores podem gerenciar o cardápio (adicionando produtos e categorias) e acompanhar os pedidos em tempo real (ou via atualização manual) garantindo um fluxo de trabalho otimizado do balcão até a entrega final.
