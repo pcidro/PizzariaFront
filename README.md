@@ -1,6 +1,6 @@
 # 🍕 Sistema de Pizzaria - Front-End
 
-Este projeto foi desenvolvido para fornecer uma interface administrativa robusta e moderna, permitindo a gestão eficiente de categorias, produtos e o controle de pedidos da cozinha.
+Este projeto foi desenvolvido para fornecer uma interface administrativa robusta e moderna, permitindo a gestão eficiente de categorias, produtos e o controle de pedidos da cozinha de uma pizzaria.
 
 ## 📋 Índice
 
