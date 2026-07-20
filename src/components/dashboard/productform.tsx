@@ -14,7 +14,7 @@ export default function ProductForm({ categories }: ProductFormProps) {
   const [open, setOpen] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-
+  const [priceValue, setPriceValue] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -47,12 +47,20 @@ export default function ProductForm({ categories }: ProductFormProps) {
     }
   }
 
+  function handleRemoveImage() {
+    setImagePreview(null);
+  }
+
   return (
     <ProductDialog
+      handleRemoveImage={handleRemoveImage}
+      setImagePreview={setImagePreview}
       open={open}
       setOpen={setOpen}
       imagePreview={imagePreview}
       error={error}
+      priceValue={priceValue}
+      setPriceValue={setPriceValue}
       handleFileChange={handleFileChange}
       loading={loading}
       handleCreateProduct={handleCreateProduct}

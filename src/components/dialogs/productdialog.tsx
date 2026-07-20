@@ -11,7 +11,7 @@ import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import Image from "next/image";
-import { Plus, Upload } from "lucide-react";
+import { Plus, Upload, Trash } from "lucide-react";
 import { CategoryProps } from "@/types/CategoryType";
 
 interface ProductDialogProps {
@@ -19,22 +19,47 @@ interface ProductDialogProps {
   setOpen: (open: boolean) => void;
   handleFileChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   imagePreview?: string | null;
+  setImagePreview: (imagePreview: string | null) => void;
   error: string | null;
   loading: boolean;
+  handleRemoveImage: () => void;
+  priceValue: string;
+  setPriceValue: (priceValue: string) => void;
   handleCreateProduct: (e: React.FormEvent<HTMLFormElement>) => void;
   categories: CategoryProps[];
 }
 
 export default function ProductDialog({
   open,
+  handleRemoveImage,
   handleFileChange,
   setOpen,
   error,
   loading,
   imagePreview,
+  priceValue,
+  setPriceValue,
   handleCreateProduct,
   categories,
 }: ProductDialogProps) {
+  function handlePriceChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const value = formatToBrl(e.target.value);
+    setPriceValue(value);
+  }
+
+  function formatToBrl(value: string) {
+    let v = value.replace(/\D/g, "");
+    const amount = parseInt(v) / 100;
+    return amount.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+  }
+
+  function RemoveImage() {
+    handleRemoveImage();
+  }
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger
@@ -73,13 +98,21 @@ export default function ProductDialog({
               onChange={handleFileChange}
             />
             {imagePreview ? (
-              <div className="relative w-full h-40">
-                <Image
-                  src={imagePreview}
-                  alt="Preview"
-                  fill
-                  className="object-contain rounded-md"
-                />
+              <div className="flex items-center gap-2 w-full">
+                <div className="relative w-full h-56 rounded-md overflow-hidden">
+                  <Image
+                    src={imagePreview}
+                    alt="Preview"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <Button
+                  onClick={RemoveImage}
+                  className=" absolute top-3 right-3 z-20 bg-red-500 hover:bg-red-600 text-white cursor-pointer"
+                >
+                  <Trash size={24} />
+                </Button>
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center py-4 text-zinc-400 group-hover:text-white transition">
@@ -114,6 +147,8 @@ export default function ProductDialog({
                 type="text"
                 placeholder="Ex: 35.00"
                 name="price"
+                value={priceValue}
+                onChange={handlePriceChange}
                 required
                 className="border-app-border bg-app-background text-white"
               />
