@@ -89,15 +89,6 @@ export default function LoginForm() {
           {state.error && (
             <p className="text-red-500 text-center text-sm">{state.error}</p>
           )}
-          <p className="text-zinc-500 text-center text-sm">
-            Não tem uma conta?{" "}
-            <Link
-              className="font-bold text-brand-primary hover:underline"
-              href="/register"
-            >
-              Cadastre-se
-            </Link>
-          </p>
         </form>
       </CardContent>
     </Card>

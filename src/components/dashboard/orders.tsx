@@ -9,6 +9,7 @@ import { Card, CardTitle, CardContent, CardHeader } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { formatPrice } from "@/lib/formatPrice";
 import { EyeIcon } from "lucide-react";
+import OrderModal from "./OrderModal";
 
 interface orderProps {
   token: string;
@@ -17,6 +18,7 @@ interface orderProps {
 export function OrdersList({ token }: orderProps) {
   const [orders, setOrders] = useState<OrdersType[]>([]);
   const [loading, setLoading] = useState(false);
+  const [selectOrders, setSelectedOrder] = useState<string | null>(null);
 
   async function fetchOrders() {
     setLoading(true);
@@ -107,7 +109,10 @@ export function OrdersList({ token }: orderProps) {
                       </p>
                     </div>
 
-                    <Button className="flex items-center gap-2 cursor-pointer bg-brand-primary hover:bg-brand-primary/80 transition-colors w-full xl:w-auto rounded-lg p-2 mt-2">
+                    <Button
+                      onClick={() => setSelectedOrder(order.id)}
+                      className="flex items-center gap-2 cursor-pointer bg-brand-primary hover:bg-brand-primary/80 transition-colors w-full xl:w-auto rounded-lg p-2 mt-2"
+                    >
                       <EyeIcon />
                       Detalhes do pedido
                     </Button>
@@ -117,6 +122,16 @@ export function OrdersList({ token }: orderProps) {
             </Card>
           ))}
         </div>
+      )}
+      {selectOrders && (
+        <OrderModal
+          orderId={selectOrders}
+          token={token}
+          onClose={async () => {
+            setSelectedOrder(null);
+            await fetchOrders();
+          }}
+        />
       )}
     </div>
   );
