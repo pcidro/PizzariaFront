@@ -24,6 +24,13 @@ Este projeto foi desenvolvido para fornecer uma interface administrativa robusta
 
 O objetivo deste projeto é modernizar e facilitar a operação de uma pizzaria, focando principalmente no lado administrativo e na cozinha. Através de um painel de controle intuitivo, os administradores podem gerenciar o cardápio (adicionando produtos e categorias) e acompanhar os pedidos em tempo real (ou via atualização manual) garantindo um fluxo de trabalho otimizado do balcão até a entrega final.
 
+## 🧪 Acesso para Testes
+
+Para testar o painel sem precisar criar uma conta, você pode utilizar as credenciais de teste abaixo. **Nota importante:** Este usuário possui apenas permissões de leitura (visualização). Operações que alteram dados (como postar novos produtos, excluir itens ou finalizar pedidos) estão bloqueadas por segurança e são restritas apenas aos administradores.
+
+- **E-mail:** `usuario@gmail.com`
+- **Senha:** `Usuario123`
+
 ## 🔗 Repositório Back-End
 
 Este projeto é exclusivamente o **Front-End** da aplicação. A API (Back-End) foi desenvolvida separadamente e é responsável por toda a regra de negócio, banco de dados e autenticação.
