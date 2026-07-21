@@ -47,6 +47,76 @@ Você pode encontrar o repositório do Back-End completo aqui:
 - **Detalhes e Finalização de Pedido:** Modal para visualizar todos os itens do pedido com cálculo automático do total e possibilidade de marcá-lo como finalizado/entregue.
 - **Interface Responsiva:** Layout adaptável para uso em desktop ou dispositivos móveis, com sidebar nativa e menu mobile.
 
+## 📸 Telas da Aplicação
+
+Abaixo está o fluxo principal de uso da plataforma, desde a entrada no sistema até o controle do cardápio e atendimento de pedidos.
+
+---
+
+## 🔐 Login
+
+A autenticação permite que apenas usuários autorizados acessem o painel administrativo. O login utiliza validação dos campos e exibe mensagens claras em caso de erro, garantindo uma experiência simples e segura.
+
+![Tela de Login](docs/logintela.jpg)
+
+---
+
+## 📊 Dashboard e Pedidos
+
+Após a autenticação, o usuário é direcionado para o Dashboard. Aqui, a cozinha pode visualizar rapidamente todos os pedidos em andamento, organizados por mesa, facilitando o acompanhamento do fluxo de trabalho.
+
+![Dashboard Inicial](docs/dashboardinicial.jpg)
+
+---
+
+## 🔍 Detalhes do Pedido
+
+Ao clicar em um pedido no painel, um modal detalhado é aberto. Ele exibe todos os itens solicitados e o valor total, permitindo que a equipe entenda rapidamente o que precisa ser preparado e marque o pedido como finalizado.
+
+![Detalhes do Pedido](docs/detalhespedido.JPG)
+
+---
+
+## 📑 Gerenciamento de Categorias
+
+Nesta aba, o administrador pode visualizar todas as categorias do cardápio cadastradas no sistema. Ela ajuda a manter a organização dos produtos que serão oferecidos aos clientes.
+
+![Categorias](docs/dashboardcategorias.JPG)
+
+---
+
+## ➕ Nova Categoria
+
+Através de um modal simples e direto, é possível cadastrar rapidamente novas categorias no sistema. Isso resolve o problema de burocracia na hora de expandir as opções do cardápio.
+
+![Nova Categoria](docs/dialognovacategoria.JPG)
+
+---
+
+## 🍕 Gerenciamento de Produtos
+
+A aba de produtos lista todos os itens do cardápio, exibindo suas imagens, preços formatados e descrições. É o centro de controle onde o administrador decide o que está disponível para venda.
+
+![Produtos](docs/dashboardprodutos.jpg)
+
+---
+
+## 📦 Novo Produto
+
+Neste modal, o usuário pode cadastrar um novo produto enviando uma imagem, definindo preço, categoria e descrição. A interface de upload oferece feedback visual imediato, facilitando a gestão visual do cardápio.
+
+![Novo Produto](docs/dialognovoproduto.JPG)
+
+---
+
+## 🗑️ Exclusão de Produto
+
+Para garantir que exclusões acidentais não ocorram, o sistema apresenta um modal de confirmação antes de apagar um produto. Isso traz mais segurança para a gestão do catálogo da pizzaria.
+
+![Excluir Produto](docs/dialogexcluirproduto.JPG)
+
+---
+
 ## 🚀 Tecnologias e Bibliotecas
 
 O projeto utiliza tecnologias modernas do ecossistema React, garantindo alta performance e manutenibilidade:
