@@ -26,7 +26,7 @@ O objetivo deste projeto é modernizar e facilitar a operação de uma pizzaria,
 
 ## 🧪 Acesso para Testes
 
-Para testar o painel sem precisar criar uma conta, você pode utilizar as credenciais de teste abaixo. **Nota importante:** Este usuário possui apenas permissões de leitura (visualização). Operações que alteram dados (como postar novos produtos, excluir itens ou finalizar pedidos) estão bloqueadas por segurança e são restritas apenas aos administradores.
+Para testar o painel sem precisar criar uma conta, você pode utilizar as credenciais de teste. **Nota importante:** Este usuário possui apenas permissões de leitura (visualização). Operações que alteram dados (como postar novos produtos, excluir itens ou finalizar pedidos) estão bloqueadas por segurança e são restritas apenas aos administradores.
 
 - **E-mail:** `usuario@gmail.com`
 - **Senha:** `Usuario123`
