@@ -21,11 +21,13 @@ export default function OrderModal({
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(true);
   const [finishLoading, setFinishLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     if (orderId) {
       setOpen(true);
+      setError(null);
       fetchOrder();
     }
   }, [orderId]);
@@ -34,6 +36,7 @@ export default function OrderModal({
     setOpen(isOpen);
     if (!isOpen) {
       onClose();
+      setError(null);
     }
   };
 
@@ -57,16 +60,18 @@ export default function OrderModal({
   async function handleFinishOrder() {
     if (!orderId) return;
     setFinishLoading(true);
+    setError(null);
     try {
       const result = await finishOrderAction(orderId);
       if (result.success) {
         handleOpenChange(false);
         router.refresh();
       } else {
-        console.log(result.error);
+        setError(result.error || "Erro ao finalizar pedido");
       }
     } catch (error) {
       console.log(error);
+      setError("Erro inesperado ao finalizar pedido");
     } finally {
       setFinishLoading(false);
     }
@@ -81,6 +86,7 @@ export default function OrderModal({
         loading={loading}
         onFinishOrder={handleFinishOrder}
         finishLoading={finishLoading}
+        error={error}
       />
     </div>
   );

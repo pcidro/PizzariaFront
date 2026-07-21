@@ -37,6 +37,11 @@ export async function apiClient<T>(
   });
 
   if (!response.ok) {
+    if (response.status === 403 || response.status === 401) {
+      throw new Error(
+        "Ação não autorizada. Apenas administradores podem realizar esta operação.",
+      );
+    }
     throw new Error(
       `Erro na requisição: ${response.statusText} ${response.status}`,
     );

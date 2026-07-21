@@ -17,6 +17,7 @@ interface OrderDetailDialogProps {
   loading: boolean;
   onFinishOrder: () => Promise<void>;
   finishLoading: boolean;
+  error?: string | null;
 }
 
 export default function OrderDetailDialog({
@@ -26,6 +27,7 @@ export default function OrderDetailDialog({
   loading,
   onFinishOrder,
   finishLoading,
+  error,
 }: OrderDetailDialogProps) {
   const total =
     order?.items?.reduce((acc, item) => {
@@ -121,6 +123,12 @@ export default function OrderDetailDialog({
                 {formatPrice(total)}
               </span>
             </div>
+
+            {error && (
+              <div className="bg-red-950 border border-red-800 text-red-200 px-4 py-3 rounded-lg text-sm mb-4">
+                {error}
+              </div>
+            )}
 
             <footer className="flex flex-col gap-2 pt-2">
               {!order.status && (

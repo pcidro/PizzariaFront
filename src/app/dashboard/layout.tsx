@@ -1,13 +1,13 @@
 import Sidebar from "@/components/dashboard/sidebar";
 import SidebarMobile from "@/components/dashboard/siderbarmobile";
-import { requiredAdmin } from "@/lib/auth";
+import { requireAuth } from "@/lib/auth";
 
 export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const user = await requiredAdmin();
+  const user = await requireAuth();
   return (
     <div className="flex h-screen overflow-hidden text-white">
       <Sidebar name={user.name} />
