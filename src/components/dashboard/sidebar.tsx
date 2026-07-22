@@ -1,6 +1,12 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { ShoppingCart, Package, Tags, LogOut } from "lucide-react";
+import {
+  ShoppingCart,
+  Package,
+  Tags,
+  LogOut,
+  CheckCheckIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
@@ -25,6 +31,11 @@ export default function Sidebar({ name }: SidebarProps) {
       title: "Categorias",
       href: "/dashboard/categories",
       icon: Tags,
+    },
+    {
+      title: "Pedidos Finalizados",
+      href: "/dashboard/finalized",
+      icon: CheckCheckIcon,
     },
   ];
   const pathname = usePathname();

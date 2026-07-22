@@ -1,6 +1,13 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { ShoppingCart, Package, Tags, LogOut, Menu } from "lucide-react";
+import {
+  ShoppingCart,
+  Package,
+  Tags,
+  LogOut,
+  Menu,
+  CheckCheckIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
@@ -33,6 +40,12 @@ export default function SidebarMobile() {
       title: "Categorias",
       href: "/dashboard/categories",
       icon: Tags,
+    },
+
+    {
+      title: "Pedidos Finalizados",
+      href: "/dashboard/finalized",
+      icon: CheckCheckIcon,
     },
   ];
   return (
