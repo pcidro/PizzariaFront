@@ -6,6 +6,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Pizza, Trash } from "lucide-react";
 import ProductForm from "@/components/dashboard/productform";
 import DeleteButton from "@/components/dashboard/deleteButton";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Produtos",
+  description: "Gerencie os produtos e o cardápio da sua pizzaria.",
+};
 
 export default async function ProductsPage() {
   const token = await getToken();

@@ -10,7 +10,13 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+import { Metadata } from "next";
 import { logoutAction } from "@/actions/logout";
+
+export const metadata: Metadata = {
+  title: "Acesso Negado",
+  description: "Você não possui permissão para acessar este recurso.",
+};
 
 export default async function AcessDenied() {
   return (

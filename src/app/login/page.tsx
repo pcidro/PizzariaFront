@@ -4,8 +4,8 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Faça login | Easy Pizza",
-  description: "Faça login no site Easy Pizza",
+  title: "Faça Login",
+  description: "Acesse sua conta no painel da Easy Pizza para gerenciar pedidos e produtos.",
 };
 
 export default async function Login() {

@@ -3,6 +3,12 @@ import { getToken } from "@/lib/cookies";
 import { requireAuth } from "@/lib/auth";
 import { apiClient } from "@/lib/api";
 import { ProductProps } from "@/types/ProductType";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Painel de Pedidos",
+  description: "Gerencie e acompanhe todos os pedidos da sua pizzaria em tempo real.",
+};
 
 export default async function Page() {
   await requireAuth();

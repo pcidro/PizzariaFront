@@ -5,6 +5,12 @@ import { CategoryProps } from "@/types/CategoryType";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tags } from "lucide-react";
 import CategoryForm from "@/components/dashboard/categoryform";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Categorias",
+  description: "Gerencie as categorias de produtos da pizzaria.",
+};
 
 export default async function CategoriesPage() {
   const token = await getToken();

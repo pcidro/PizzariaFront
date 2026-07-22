@@ -5,8 +5,8 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Crie sua conta | Easy Pizza",
-  description: "Crie sua conta no site Easy Pizza",
+  title: "Criar Conta",
+  description: "Crie sua conta na Easy Pizza para começar a gerenciar sua pizzaria.",
 };
 
 export default async function Register() {
