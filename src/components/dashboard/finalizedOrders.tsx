@@ -8,6 +8,9 @@ import { apiClient } from "@/lib/api";
 
 import { RefreshCcw } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Input } from "../ui/input";
+
+type Period = "today" | "7days" | "30days";
 
 interface OrderProps {
   token: string;
@@ -16,12 +19,13 @@ interface OrderProps {
 export default function FinalizedOrders({ token }: OrderProps) {
   const [orders, setOrders] = useState<OrdersType[]>([]);
   const [loading, setLoading] = useState(false);
+  const [period, setPeriod] = useState<Period>("today");
 
-  async function fetchOrders() {
+  async function fetchOrders(period: Period) {
     setLoading(true);
     try {
       const res = await apiClient<OrdersType[]>(
-        "/order/finishedorders?status=true",
+        `/order/finishedorders?status=true&period=${period}`,
         {
           method: "GET",
           cache: "no-store",
@@ -38,8 +42,8 @@ export default function FinalizedOrders({ token }: OrderProps) {
   }
 
   useEffect(() => {
-    fetchOrders();
-  }, []);
+    fetchOrders(period);
+  }, [period]);
 
   function orderTotal(order: OrdersType) {
     if (!order.items) return 0;
@@ -60,13 +64,43 @@ export default function FinalizedOrders({ token }: OrderProps) {
             Acompanhe os pedidos já finalizados
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-4 bg-app-bg p-4 rounded-lg">
+          <div className="flex flex-col items-center">
+            <p className="text-zinc-400 mb-2">Hoje</p>
+            <Input
+              type="radio"
+              name="period"
+              value="today"
+              checked={period === "today"}
+              onChange={() => setPeriod("today")}
+            />
+          </div>
+          <div className="flex flex-col items-center">
+            <p className="text-zinc-400 mb-2">Semana</p>
+            <Input
+              type="radio"
+              name="period"
+              value="7days"
+              checked={period === "7days"}
+              onChange={(e) => setPeriod("7days")}
+            />
+          </div>
+          <div className="flex flex-col items-center">
+            <p className="text-zinc-400 mb-2">Mês</p>
+            <Input
+              type="radio"
+              name="period"
+              value="30days"
+              checked={period === "30days"}
+              onChange={(e) => setPeriod("30days")}
+            />
+          </div>
           <Button
             className="text-white bg-app-main transition-shadow hover:shadow-lg hover:bg-app-main/80 cursor-pointer"
-            onClick={() => fetchOrders()}
+            onClick={() => fetchOrders(period)}
           >
-            <RefreshCcw className="w-5 h-5" />
-            Atualizar
+            <RefreshCcw className="w-5 h-5 text-zinc-400" />
+            <p className="text-zinc-400">Atualizar</p>
           </Button>
         </div>
       </section>
