@@ -9,15 +9,23 @@ import { Card, CardTitle, CardContent, CardHeader } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { formatPrice } from "@/lib/formatPrice";
 import { EyeIcon } from "lucide-react";
+import { Plus } from "lucide-react";
 import OrderModal from "./OrderModal";
+import CreateOrderDialog from "../dialogs/createorderdialog";
+import { addOrderAction } from "@/actions/addorder";
+import { ProductProps } from "@/types/ProductType";
 
 interface orderProps {
   token: string;
+  products: ProductProps[];
 }
 
-export function OrdersList({ token }: orderProps) {
+export function OrdersList({ token, products }: orderProps) {
   const [orders, setOrders] = useState<OrdersType[]>([]);
+  const [open, setOpen] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
   const [selectOrders, setSelectedOrder] = useState<string | null>(null);
 
   async function fetchOrders() {
@@ -41,6 +49,25 @@ export function OrdersList({ token }: orderProps) {
     fetchOrders();
   }, []);
 
+  async function addOrder(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const formData = new FormData(e.currentTarget);
+      const result = await addOrderAction(formData);
+      if (result.success) {
+        setOpen(false);
+        await fetchOrders();
+      } else {
+        setError(result.error || "Erro ao criar pedido");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   function orderTotal(order: OrdersType) {
     if (!order.items) return 0;
     return order.items.reduce((total, item) => {
@@ -58,9 +85,14 @@ export function OrdersList({ token }: orderProps) {
             Gerencie os pedidos da cozinha
           </p>
         </div>
-        <Button className="text-white bg-app-main transition-shadow hover:shadow-lg hover:bg-app-main/80 cursor-pointer">
-          <RefreshCcw onClick={() => fetchOrders()} className="w-5 h-5" />
-        </Button>
+        <div className="flex gap-4">
+          <Button className="text-white bg-app-main transition-shadow hover:shadow-lg hover:bg-app-main/80 cursor-pointer">
+            <RefreshCcw onClick={() => fetchOrders()} className="w-5 h-5" />
+          </Button>
+          <Button className="text-white bg-app-main transition-shadow hover:shadow-lg hover:bg-app-main/80 cursor-pointer">
+            <Plus onClick={() => setOpen(true)} className="w-5 h-5" />
+          </Button>
+        </div>
       </section>
       {loading ? (
         <p className="text-center text-zinc-400">Carregando...</p>
@@ -133,6 +165,14 @@ export function OrdersList({ token }: orderProps) {
           }}
         />
       )}
+      <CreateOrderDialog
+        open={open}
+        setOpen={setOpen}
+        addOrder={addOrder}
+        error={error}
+        loading={loading}
+        products={products}
+      />
     </div>
   );
 }
